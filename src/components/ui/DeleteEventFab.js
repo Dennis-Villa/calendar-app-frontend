@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { eventDeleted } from '../../actions/event';
+import { eventStartDelete } from '../../actions/event';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { useDispatch } from 'react-redux';
@@ -10,7 +10,7 @@ export const DeleteEventFab = () => {
 
     const handleClick = () => {
       dispatch(
-        eventDeleted()
+        eventStartDelete()
       );
     };
   

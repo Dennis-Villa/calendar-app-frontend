@@ -8,7 +8,7 @@ import { regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiCloseModal } from '../../actions/ui';
-import { eventAddNew, eventClearActive, eventDeleteShortcut, eventUpdated } from '../../actions/event';
+import { eventClearActive, eventDeleteShortcut, eventStartAddNew, eventStartUpdate } from '../../actions/event';
 
 // Estilos del Modal
 const customStyles = {
@@ -38,11 +38,6 @@ const initEvent = {
     notes: '',
     start: plainNow.toJSDate(),
     end: plainNow.plus({hours: 1}).toJSDate(),
-    id: new Date().getTime(),
-    user: {
-        _id: '123',
-        name: 'Dennis'
-    }
 };
 
 export const CalendarModal = () => {
@@ -140,7 +135,7 @@ export const CalendarModal = () => {
         // Acceder a la DB
         if(!!active){
             dispatch(
-                eventUpdated({
+                eventStartUpdate({
                     ...formValues,
                     start: DateTime.fromJSDate(start).toISO(),
                     end: DateTime.fromJSDate(end).toISO()
@@ -149,7 +144,7 @@ export const CalendarModal = () => {
         }
         else{
             dispatch(
-                eventAddNew({
+                eventStartAddNew({
                     ...formValues,
                     start: DateTime.fromJSDate(start).toISO(),
                     end: DateTime.fromJSDate(end).toISO()

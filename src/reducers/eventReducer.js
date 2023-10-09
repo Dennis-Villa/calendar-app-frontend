@@ -1,23 +1,10 @@
-import { DateTime } from "luxon";
+
 import { types } from "../types/types";
 
-const now = DateTime.now();
-
 const initialState = {
-    events: [{
-        id: new Date().getTime(),
-        title: 'Cumpleaños del jefe',
-        start: now.toISO(),
-        end: now.plus({ hours: 2}).toISO(),
-        bgColor: '#fafafa',
-        notes: 'Comprar el pastel',
-        user: {
-          _id: '123',
-          name: 'Dennis'
-        }
-      }],
+    events: [],
     active: null,
-    shortcut: null,
+    shortcut: null
 };
 
 export const eventReducer = (state = initialState, action) => {
@@ -68,6 +55,17 @@ export const eventReducer = (state = initialState, action) => {
             return {
                 ...state,
                 shortcut: null
+            };
+
+        case types.eventLoaded:
+            return {
+                ...state,
+                events: [...action.payload]
+            };
+
+        case types.eventLogout:
+            return {
+                ...initialState
             };
 
         default:
