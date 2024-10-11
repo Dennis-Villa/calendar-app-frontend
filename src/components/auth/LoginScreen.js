@@ -9,8 +9,8 @@ export const LoginScreen = () => {
     const dispatch = useDispatch();
 
     const [ formLoginValues, handleLoginInputChange ] = useForm({
-        lEmail: '',
-        lPassword: ''
+        lEmail: 'test@test.com',
+        lPassword: '12345678'
     });
 
     const [ formRegisterValues, handleRegisterInputChange ] = useForm({
@@ -48,6 +48,7 @@ export const LoginScreen = () => {
                 <div className="row">
                     <div className="col-md-5 login-form-1">
                         <h3>Ingreso</h3>
+                        <div className='callout-info'>Se proporciona un usuario y contraseña para probar la aplicación</div>
                         <form onSubmit={ handleLogin }>
                             <div className="mb-3">
                                 <input 
